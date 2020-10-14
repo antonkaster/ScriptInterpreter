@@ -1,1 +1,2 @@
-# ScriptInterpreter
+# ConsoleInterpreter
+Консольный интерпретатор сценариев

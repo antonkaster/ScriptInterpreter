@@ -1,1 +1,2 @@
-# ScriptInterpreter
+# InterpreterLib
+Основная библиотека интерпретатора
