@@ -1,1 +1,2 @@
-# ScriptInterpreter
+# InterpreterTests
+Тесты функция языка
