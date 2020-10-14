@@ -271,6 +271,7 @@ namespace LangGUI.ViewModels
             LoadCodeFromFile(FileName);
 
             langBase = new ScriptBase();
+            langBase.LogOptions.EnableDebug = true;
             langBase.ConsoleOut += (text) => Console += text;
             langBase.DebugOut += (text) => PrintToDebug(text);
             langBase.ErrorOut += LangBase_ErrorOut;

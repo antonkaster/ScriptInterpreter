@@ -24,13 +24,7 @@ namespace InterpreterLib.Logs
             this.logDebug = logDebug ?? throw new ArgumentNullException("LogDebug Action can't be null!");
             this.logTokenizedError = logError ?? throw new ArgumentNullException("LogError Action can't be null!");
             this.logWarning = logWarning ?? throw new ArgumentNullException("LogWarning Action can't be null!");
-            LoggerOptions = new LoggerOptions()
-            {
-                EnableDebug = true,
-                EnableConsoleOut = true,
-                EnableError = true,
-                EnableWarning = true
-            };
+            LoggerOptions = new LoggerOptions();
         }
 
         public void ConsoleOut(string text)

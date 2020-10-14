@@ -52,7 +52,6 @@ namespace InterpreterLib.InterpreterModules
                 RuntimeControl.ScriptStop();
 
                 WriteDebugOut($"Finished in {stopwatch.Elapsed}");
-                Debug.Print($"Finished in {stopwatch.Elapsed}");
 
                 SendScriptResult(result);
                 return result;
@@ -150,7 +149,6 @@ namespace InterpreterLib.InterpreterModules
         private void SendScriptResult(SObject obj)
         {
             ScriptFinished?.Invoke(obj);
-            Debug.Print($"Script result: " + obj.ToString());
         }
     }
 }
