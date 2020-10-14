@@ -29,21 +29,21 @@ namespace InterpreterLib.Expressions
         /// </summary>
         public Token Token { get; private set; } = new Token();
 
-        protected readonly IInternalRuntimeControl InternalControl;
+        protected readonly IFunctionRuntimeControl InternalControl;
 
 
-        public Expression(IInternalRuntimeControl internalControl)
+        public Expression(IFunctionRuntimeControl internalControl)
         {
             this.InternalControl = internalControl ?? throw new ArgumentNullException("internalControl can't be null!");
         }
 
-        public Expression(IInternalRuntimeControl internalControl, Token token) 
+        public Expression(IFunctionRuntimeControl internalControl, Token token) 
             : this(internalControl)
         {            
             this.Token = token ?? throw new ArgumentNullException("Token can'tbe null!");
         }
 
-        public Expression(IInternalRuntimeControl internalControl, List<Expression>  expressions) 
+        public Expression(IFunctionRuntimeControl internalControl, List<Expression>  expressions) 
             : this(internalControl)
         {
             SubExpressions = expressions ?? throw new ArgumentNullException("SubExpressions can'tbe null!");

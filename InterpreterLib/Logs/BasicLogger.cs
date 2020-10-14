@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace InterpreterLib.Logs
 {
-    public class BasicLogger : ILogger
+    internal class BasicLogger : ILogger
     {
         public LoggerOptions LoggerOptions { get; private set; }
 
@@ -47,13 +47,15 @@ namespace InterpreterLib.Logs
 
         public void LogTokenizedError(Token token, string text)
         {
-            if(LoggerOptions.EnableError)
+            LogDebug($"Error ({token}): {text}");
+            if (LoggerOptions.EnableError)
                 logTokenizedError.Invoke(token, text);
         }
 
         public void LogError(string text)
         {
-            if(LoggerOptions.EnableError)
+            LogDebug($"Error: {text}");
+            if (LoggerOptions.EnableError)
                 logTokenizedError.Invoke(new Token(), text);
         }
 

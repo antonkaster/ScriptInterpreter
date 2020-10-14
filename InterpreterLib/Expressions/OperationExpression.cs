@@ -18,7 +18,7 @@ namespace InterpreterLib.Expressions
 
         private List<Expression> argsExpressions = null;
 
-        public OperationExpression(IInternalRuntimeControl internalControl, Token token, FunctionBase function) 
+        public OperationExpression(IFunctionRuntimeControl internalControl, Token token, FunctionBase function) 
             : base(internalControl, token)
         {
             this.Function = function ?? throw new ArgumentNullException("Function can't be null!");

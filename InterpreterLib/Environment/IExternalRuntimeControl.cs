@@ -43,12 +43,12 @@ namespace InterpreterLib.Environment
         /// Запускает сценарий
         /// </summary>
         /// <param name="stepByStepMode">Режим пошагового выполнения</param>
-        public void ScriptStart(bool stepByStepMode = false);
+        //public void ScriptStart(bool stepByStepMode = false);
 
         /// <summary>
         /// Останавливает сценарий
         /// </summary>
-        public void ScriptStop();
+        public void Stop();
 
         /// <summary>
         /// Разрешает выполнить следующий шаг в режиме пошагового выполнения

@@ -11,7 +11,7 @@ namespace InterpreterLib.Expressions
     public class ArgumentsExpression : Expression
     {
 
-        public ArgumentsExpression(IInternalRuntimeControl internalControl) 
+        public ArgumentsExpression(IFunctionRuntimeControl internalControl) 
             : base(internalControl)
         {
         }

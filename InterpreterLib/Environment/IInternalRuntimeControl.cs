@@ -8,7 +8,7 @@ namespace InterpreterLib.Environment
     /// <summary>
     /// Интерфейс для внутреннего управления выполнением сценария
     /// </summary>
-    public interface IInternalRuntimeControl
+    public interface IFunctionRuntimeControl
     {
         /// <summary>
         /// Отправляет сигнал о том что начинаетя новый шаг выполнения сценария

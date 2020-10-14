@@ -5,7 +5,7 @@ using System.Text;
 
 namespace InterpreterLib.LexerModules
 {
-    public static class LexerHelper
+    internal static class LexerHelper
     {
         private static readonly string[] startOfExpr;
         private static readonly string[] endOfExpr;

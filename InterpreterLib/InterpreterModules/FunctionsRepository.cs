@@ -43,11 +43,13 @@ namespace InterpreterLib.InterpreterModules
             return true;
         }
         
-        public IFunctionsRepository AddOperation<T>(string keyWord, params object[] args) where T: OperationFunctionBase
+        public IFunctionsRepository AddOperation<T>(string keyWord, int operationPriority, params object[] args) where T: OperationFunctionBase
         {
             if (!IsNameAvalible(keyWord))
                 throw new ScriptInitException($"Keyword '{keyWord}' already used!");
-            operations[keyWord.ToLower()] = new FunctionStorage(typeof(T), args);
+
+            operations[keyWord.ToLower()] = new FunctionStorage(typeof(T), 
+                new object[] { operationPriority }.Concat(args).ToArray());
             return this;
         }
 

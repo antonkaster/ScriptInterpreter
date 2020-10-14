@@ -43,13 +43,13 @@ namespace InterpreterLib.InterpreterModules
 
             try
             {
-                RuntimeControl.ScriptStart(stepByStep);
+                runtimeControl.SetScriptStarted(stepByStep);
 
                 SObject result = rootExpression.GetResult();
 
                 stopwatch.Stop();
 
-                RuntimeControl.ScriptStop();
+                RuntimeControl.Stop();
 
                 WriteDebugOut($"Finished in {stopwatch.Elapsed}");
 
@@ -58,7 +58,7 @@ namespace InterpreterLib.InterpreterModules
             }
             catch (ScriptStopException ex)
             {
-                RuntimeControl.ScriptStop();
+                RuntimeControl.Stop();
                 WriteDebugOut($"Script stopped by reason '{ex.Reason}'");
                 Debug.Print($"Script stopped by reason '{ex.Reason}'");
                 if (ex.ReturnObject != null)
@@ -68,28 +68,28 @@ namespace InterpreterLib.InterpreterModules
             }
             catch (ScriptFunctionException ex)
             {
-                RuntimeControl.ScriptStop();
+                RuntimeControl.Stop();
                 WriteErrorOut(ex.Token, $"Script function error: {ex.Message}");
                 Debug.Print($"Script function ({ex.Token}) error: {ex.Message}");
                 return new SObject();
             }
             catch (ScriptRuntimeException ex)
             {
-                RuntimeControl.ScriptStop();
+                RuntimeControl.Stop();
                 WriteErrorOut(ex.Token, $"Script runtime error: {ex.Message}");
                 Debug.Print($"Script runtime ({ex.Token}) error: {ex.Message}");
                 return new SObject();
             }
             catch (OperationCanceledException ex)
             {
-                RuntimeControl.ScriptStop();
+                RuntimeControl.Stop();
                 WriteErrorOut(new Token(), $"Script canceled by unknown reason ({ex.Message})");
                 Debug.Print($"Script canceled by unknown reason ({ex.Message})");
                 return new SObject();
             }
             catch (Exception ex)
             {
-                RuntimeControl.ScriptStop();
+                RuntimeControl.Stop();
                 WriteErrorOut(new Token(), $"Error: {ex.Message}");
                 Debug.Print($"Error: {ex.Message}");
                 return new SObject();
@@ -110,7 +110,7 @@ namespace InterpreterLib.InterpreterModules
 
         public void Stop()
         {
-            RuntimeControl.ScriptStop();
+            RuntimeControl.Stop();
             WriteDebugOut($"Script aborted!");
         }
 
@@ -142,8 +142,7 @@ namespace InterpreterLib.InterpreterModules
 
         private void WriteErrorOut(Token token, string text)
         {
-            WriteDebugOut(text);
-            scriptEnvironment.Logger.LogDebug("Error: " + text);
+            scriptEnvironment.Logger.LogTokenizedError(token, "Error: " + text);
         }
 
         private void SendScriptResult(SObject obj)

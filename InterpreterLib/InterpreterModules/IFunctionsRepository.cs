@@ -15,9 +15,10 @@ namespace InterpreterLib.InterpreterModules
         /// </summary>
         /// <typeparam name="T">Тип класса операции</typeparam>
         /// <param name="keyWord">Ключевое слово</param>
+        /// <param name="operationPriority">Приоритет операции (больше-выше)</param>
         /// <param name="args">Аргументыо перации</param>
         /// <returns></returns>
-        public IFunctionsRepository AddOperation<T>(string keyWord, params object[] args) where T : OperationFunctionBase;
+        public IFunctionsRepository AddOperation<T>(string keyWord, int operationPriority, params object[] args) where T : OperationFunctionBase;
 
         /// <summary>
         /// Добавить функцию

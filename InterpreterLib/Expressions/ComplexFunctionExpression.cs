@@ -19,7 +19,7 @@ namespace InterpreterLib.Expressions
 
         private List<Expression> argsExpressions = null;
 
-        public ComplexFunctionExpression(IInternalRuntimeControl internalControl, Token token, ComplexFunctionBase function) 
+        public ComplexFunctionExpression(IFunctionRuntimeControl internalControl, Token token, ComplexFunctionBase function) 
             : base(internalControl, token)
         {
             this.Function = function ?? throw new ArgumentNullException("Function can't be null!");

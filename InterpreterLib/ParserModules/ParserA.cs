@@ -20,10 +20,10 @@ namespace InterpreterLib.ParserModules
     internal class ParserA
     {
         private readonly IVariablesHeap vars;
-        private readonly IInternalRuntimeControl runtimeControl;
+        private readonly IFunctionRuntimeControl runtimeControl;
         private readonly FunctionsRepository functions;
 
-        public ParserA(FunctionsRepository functions, IVariablesHeap vars, IInternalRuntimeControl runtimeControl)
+        public ParserA(FunctionsRepository functions, IVariablesHeap vars, IFunctionRuntimeControl runtimeControl)
         {
             this.functions = functions ?? throw new ArgumentNullException("Interpreter box can't be null!");
             this.vars = vars ?? throw new ArgumentNullException("Vars can't be null!");

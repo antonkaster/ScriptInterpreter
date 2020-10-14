@@ -16,13 +16,13 @@ namespace InterpreterLib.ParserModules
     /// <summary>
     /// Фабрика генерирующая экземпляры интерпретатора на основе текста сценария
     /// </summary>
-    public class ParserFabric : IScriptParser
+    public class ParserFactory : IScriptParser
     {
         private readonly FunctionsRepository functions;
         private readonly ScriptEnvironment scriptEnvironment;
         private readonly IInterpreterLogger logger;
 
-        internal ParserFabric(IInterpreterLogger logger , FunctionsRepository functions, ScriptEnvironment scriptEnvironment)
+        internal ParserFactory(IInterpreterLogger logger , FunctionsRepository functions, ScriptEnvironment scriptEnvironment)
         {
             this.functions = functions ?? throw new ArgumentNullException("Functions repository can't be null!");
             this.scriptEnvironment = scriptEnvironment ?? throw new ArgumentNullException("Script environment can't be null!");

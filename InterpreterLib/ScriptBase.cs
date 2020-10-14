@@ -54,7 +54,7 @@ namespace InterpreterLib
         private readonly ILogger logger;
         private readonly FunctionsRepository functions;
         private readonly ScriptEnvironment scriptEnvironment;
-        private readonly ParserFabric parser;
+        private readonly ParserFactory parser;
 
         public ScriptBase()
         {
@@ -69,7 +69,7 @@ namespace InterpreterLib
             functions = new FunctionsRepository(new FunctionEnvironment(scriptEnvironment));
             InitFunctions();
 
-            parser = new ParserFabric(logger, functions, scriptEnvironment);
+            parser = new ParserFactory(logger, functions, scriptEnvironment);
         }
 
         private void InitFunctions()

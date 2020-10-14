@@ -12,7 +12,7 @@ namespace InterpreterLib.Environment
     /// <summary>
     /// Управление выполнением сценария
     /// </summary>
-    internal class ScriptRuntimeControl : IExternalRuntimeControl, IInternalRuntimeControl
+    internal class ScriptRuntimeControl : IExternalRuntimeControl, IFunctionRuntimeControl
     {
         public event IExternalRuntimeControl.StepExecMethod BeforeStepExec;
         public event IExternalRuntimeControl.StepExecMethod StepExec;
@@ -31,7 +31,7 @@ namespace InterpreterLib.Environment
             this.logger = logger ?? throw new ArgumentNullException("Logger can't be null!");
         }
 
-        public void ScriptStart(bool stepByStepMode = false)
+        public void SetScriptStarted(bool stepByStepMode = false)
         {
             if (ScriptInProcess)
                 return;
@@ -43,7 +43,7 @@ namespace InterpreterLib.Environment
             ScriptInProcess = true;
         }
 
-        public void ScriptStop()
+        public void Stop()
         {
             if (!ScriptInProcess)
                 return;

@@ -17,7 +17,7 @@ namespace InterpreterLib.Expressions
 
         private readonly IVariablesHeap vars;
 
-        public VariableExpression(IInternalRuntimeControl internalControl, Token token, IVariablesHeap vars) 
+        public VariableExpression(IFunctionRuntimeControl internalControl, Token token, IVariablesHeap vars) 
             : base(internalControl, token)
         {
             this.vars = vars ?? throw new ArgumentNullException("Vars can't be null!");

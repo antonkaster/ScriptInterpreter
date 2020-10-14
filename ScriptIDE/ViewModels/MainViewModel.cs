@@ -29,14 +29,12 @@ namespace LangGUI.ViewModels
     public class MainViewModel : ObservableObject
     {
 
-        private bool enableDebugOutput = true;
         public bool EnableDebugOutput
         {
-            get => enableDebugOutput;
+            get => langBase.LogOptions.EnableDebug;
             set
             {
-                enableDebugOutput = value;
-                langBase.LogOptions.EnableDebug = false;
+                langBase.LogOptions.EnableDebug = value;
                 NotifyPropertyChanged();
             }
         }

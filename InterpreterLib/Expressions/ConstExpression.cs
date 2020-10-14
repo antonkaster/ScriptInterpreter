@@ -16,7 +16,7 @@ namespace InterpreterLib.Expressions
     {
         private SObject constValue = null;
 
-        public ConstExpression(IInternalRuntimeControl internalControl, Token token) 
+        public ConstExpression(IFunctionRuntimeControl internalControl, Token token) 
             : base(internalControl, token)
         {
             switch (Token.TokenType)
