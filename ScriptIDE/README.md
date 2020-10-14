@@ -1,1 +1,2 @@
-# ScriptInterpreter
+# ScriptIDE
+Простая IDE для отладки сценариев
