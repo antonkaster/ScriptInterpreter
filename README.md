@@ -15,16 +15,37 @@
 ## ScriptIDE
 Простая IDE для отладки сценариев
 
-## Простой пример использования
+## Примеры использования
 
+Простое вычисление:
 ```C#
-string scriptText = "Print((2 + 3) * 2)";
+deciaml result = new ScriptBase()
+	.Parser
+	.Parse("(2+2)*2")
+	.Go()
+	.NumValue;
+```
+
+Привязка с выводом в консоль:
+```C#
 ScriptBase scriptBase = new ScriptBase();
 scriptBase.ConsoleOut += (text) => Console.Write(text);
 scriptBase.ErrorOut += (token, text) => Console.WriteLine("\r\nError: " + text);
 
 scriptBase
 	.Parser
-	.Parse(scriptText)
+	.Parse("Print((2 + 3) * 2)")
 	.Go();
+```
+
+Загрузить и выполнить из файла:
+```C#
+ScriptBase scriptBase = new ScriptBase();
+scriptBase.ConsoleOut += (text) => Console.Write(text);
+scriptBase.ErrorOut += (token, text) => Console.WriteLine("\r\nError: " + text);
+
+scriptBase
+	.Parser
+	.LoadFromFileAndParse(@".\scripts\test.txt")
+	.Go()
 ```
