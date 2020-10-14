@@ -23,9 +23,6 @@ namespace ConsoleLangInterpreter
 
             try
             {
-                string script = File.ReadAllText(filename);
-
-
                 ScriptBase langBase = new ScriptBase();
                 langBase.ConsoleOut += (text) =>
                 {
@@ -40,19 +37,17 @@ namespace ConsoleLangInterpreter
                     Console.ResetColor();
                 };
 
-                while (!string.IsNullOrWhiteSpace(script))
-                {
-                    langBase.Parser.Parse(script).Go();
-
-                    Console.Write("\r\nscript> ");
-                    script = Console.ReadLine();
-                }
-
+                langBase
+                    .Parser
+                    .LoadFromFileAndParse(filename)
+                    .Go();
 
             }
             catch(Exception ex)
             {
+                Console.ForegroundColor = ConsoleColor.Magenta;
                 Console.WriteLine($"Error: {ex.Message}\r\nDetails:\r\n{ex.StackTrace}");
+                Console.ResetColor();
             }
 
         }
