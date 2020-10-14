@@ -1,19 +1,17 @@
 # Интерпретатор скриптового языка
 
-## [ConsoleInterpreter](https://github.com/antonkaster/ScriptInterpreter/tree/master/ConsoleInterpreter)
-Консольный интерпретатор сценариев
+## Состав проекта
 
-## [InterpreterLib](https://github.com/antonkaster/ScriptInterpreter/tree/master/InterpreterLib)
-Основная библиотека интерпретатора
+[ConsoleInterpreter](https://github.com/antonkaster/ScriptInterpreter/tree/master/ConsoleInterpreter) - Консольный интерпретатор сценариев
 
-## [InterpreterTests](https://github.com/antonkaster/ScriptInterpreter/tree/master/InterpreterTests)
-Тесты функций языка
+[InterpreterLib](https://github.com/antonkaster/ScriptInterpreter/tree/master/InterpreterLib) - Основная библиотека интерпретатора
 
-## [ScriptExamples](https://github.com/antonkaster/ScriptInterpreter/tree/master/ScriptExamples)
-Примеры сценариев
+[InterpreterTests](https://github.com/antonkaster/ScriptInterpreter/tree/master/InterpreterTests) - Тесты функций языка
 
-## [ScriptIDE](https://github.com/antonkaster/ScriptInterpreter/tree/master/ScriptIDE)
-Простая IDE для отладки сценариев
+[ScriptExamples](https://github.com/antonkaster/ScriptInterpreter/tree/master/ScriptExamples) - Примеры сценариев
+
+[ScriptIDE](https://github.com/antonkaster/ScriptInterpreter/tree/master/ScriptIDE) - Простая IDE для отладки сценариев
+
 
 ## Примеры использования
 
