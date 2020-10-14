@@ -17,7 +17,7 @@
 
 Простое вычисление:
 ```C#
-deciaml result = new ScriptBase()
+decimal result = new ScriptBase()
 	.Parser
 	.Parse("(2+2)*2")
 	.Go()
