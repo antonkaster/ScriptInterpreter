@@ -7,7 +7,7 @@
 Основная библиотека интерпретатора
 
 ## [InterpreterTests](https://github.com/antonkaster/ScriptInterpreter/tree/master/InterpreterTests)
-Тесты функция языка
+Тесты функций языка
 
 ## [ScriptExamples](https://github.com/antonkaster/ScriptInterpreter/tree/master/ScriptExamples)
 Примеры сценариев
