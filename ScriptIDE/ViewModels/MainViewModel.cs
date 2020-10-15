@@ -3,6 +3,7 @@ using ICSharpCode.AvalonEdit.Highlighting.Xshd;
 using InterpreterLib;
 using InterpreterLib.Expressions;
 using InterpreterLib.InterpreterModules;
+using InterpreterLib.Tokens;
 using LangGUI.Controls;
 using LangGUI.Helpers;
 using LangGUI.Models;
@@ -31,10 +32,10 @@ namespace LangGUI.ViewModels
 
         public bool EnableDebugOutput
         {
-            get => langBase.LogOptions.EnableDebug;
+            get => langBase.Logger.LogOptions.EnableDebug;
             set
             {
-                langBase.LogOptions.EnableDebug = value;
+                langBase.Logger.LogOptions.EnableDebug = value;
                 NotifyPropertyChanged();
             }
         }
@@ -269,22 +270,23 @@ namespace LangGUI.ViewModels
             LoadCodeFromFile(FileName);
 
             langBase = new ScriptBase();
-            langBase.LogOptions.EnableDebug = true;
-            langBase.ConsoleOut += (text) => Console += text;
-            langBase.DebugOut += (text) => PrintToDebug(text);
-            langBase.ErrorOut += LangBase_ErrorOut;
+            langBase.Logger.LogOptions.EnableDebug = true;
+            langBase.Logger.OnConsoleOut += (text) => Console += text;
+            langBase.Logger.OnLogDebug += (text) => PrintToDebug(text);
+            langBase.Logger.OnLogError += (text) => LangBase_ErrorOut(new Token(), text);
+            langBase.Logger.OnLogTokenizedError += (token,text) => LangBase_ErrorOut(token, text);
 
             CodeHighlightingScheme = new HighlightGenerator(langBase).Make();
         }
 
-        private void LangBase_BeforeStepExec(InterpreterLib.Tokens.Token token)
+        private void LangBase_BeforeStepExec(Token token)
         {
             ColorizeProps = new ColorizeProps(token.StartIndex, token.StartIndex + token.TokenStringLenght, Colors.Magenta, Colors.White);
             UpdateDebugInfo();
             IsStepAvalaible = true;
         }
 
-        private void LangBase_StepExec(InterpreterLib.Tokens.Token token)
+        private void LangBase_StepExec(Token token)
         {
             UpdateDebugInfo();
         }
@@ -334,7 +336,7 @@ namespace LangGUI.ViewModels
 
         public void UpdateDebugInfo()
         {
-            VariablesList = currentInterpreter.Vars.Variables.Select(t => $"[{t.Value.Type}] {t.Key} = {t.Value}");
+            VariablesList = currentInterpreter?.Vars.Variables.Select(t => $"[{t.Value.Type}] {t.Key} = {t.Value}");
         }
 
         private void UpdateParseInfo()
@@ -345,7 +347,7 @@ namespace LangGUI.ViewModels
             ExpressionTree = expressionsTreeModels;
         }
 
-        private void LangBase_ErrorOut(InterpreterLib.Tokens.Token token, string text)
+        private void LangBase_ErrorOut(Token token, string text)
         {
             inError = true;
             ColorizeProps = new ColorizeProps(token.StartIndex, token.StartIndex + token.TokenStringLenght, Colors.Red, Colors.White);

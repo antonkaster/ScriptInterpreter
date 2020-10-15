@@ -24,17 +24,10 @@ namespace InterpreterLib
     /// </summary>
     public class ScriptBase
     {
-        public delegate void ScriptOutMethod(string text);
-        public delegate void ScriptErrorOutMethod(Token token, string text);
-        public delegate void StepExecMethod(Token token);
-        public event ScriptOutMethod ConsoleOut;
-        public event ScriptOutMethod DebugOut;
-        public event ScriptErrorOutMethod ErrorOut;
-
         /// <summary>
-        /// параметры вывода сообщений среды сценария
+        /// Обеспечивает вывод
         /// </summary>
-        public LoggerOptions LogOptions { get => logger.LoggerOptions; }
+        public ILoggerReader Logger { get => logger; }
 
         /// <summary>
         /// Парсер сценариев
@@ -51,19 +44,14 @@ namespace InterpreterLib
         /// </summary>
         public IFunctionsRepository Functions { get => functions; }
 
-        private readonly ILogger logger;
+        private readonly ScriptLogger logger;
         private readonly FunctionsRepository functions;
         private readonly ScriptEnvironment scriptEnvironment;
         private readonly ParserFactory parser;
 
         public ScriptBase()
         {
-            logger = new BasicLogger(
-                    (t) => WriteConsoleOut(t),
-                    (t) => WriteDebugOut($"{t}"),
-                    (t) => WriteDebugOut($"\r\nWarning: {t}\r\n"),
-                    (s,t) => WriteErrorOut(s,$"\r\nError: {t}\r\n")
-                );
+            logger = new ScriptLogger();
 
             scriptEnvironment = new ScriptEnvironment(logger);
             functions = new FunctionsRepository(new FunctionEnvironment(scriptEnvironment));
@@ -128,32 +116,6 @@ namespace InterpreterLib
         /// </summary>
         /// <returns></returns>
         public string[] GetComplexFunctionsList() => functions.GetComplexFunctionsList();
-
-        private void WriteConsoleOut(string text)
-        {
-            if (ConsoleOut == null)
-                Debug.Print(text);
-            else
-                ConsoleOut.Invoke(text);
-        }
-        
-        private void WriteDebugOut(string text)
-        {
-            if (DebugOut == null)
-                Debug.Print($"Debug: " + text);
-            else
-                DebugOut.Invoke(text);
-        }
-
-        private void WriteErrorOut(Token token, string text)
-        {
-            WriteDebugOut(text);
-
-            if (ErrorOut == null)
-                Debug.Print($"Error: " + text);
-            else
-                ErrorOut.Invoke(token, text);
-        }
 
     }
 }

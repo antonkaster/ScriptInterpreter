@@ -137,12 +137,12 @@ namespace InterpreterLib.InterpreterModules
 
         private void WriteDebugOut(string text)
         {
-            scriptEnvironment.Logger.LogDebug("Debug: " + text);
+            scriptEnvironment.Logger.Debug("Debug: " + text);
         }
 
         private void WriteErrorOut(Token token, string text)
         {
-            scriptEnvironment.Logger.LogTokenizedError(token, "Error: " + text);
+            scriptEnvironment.Logger.Error(token, "Error: " + text);
         }
 
         private void SendScriptResult(SObject obj)

@@ -17,7 +17,7 @@ namespace InterpreterTests
         public LanguageTestBase()
         {
             langBase = new ScriptBase();
-            langBase.ConsoleOut += (t) => ScriptConsoleOut += t;
+            langBase.Logger.OnConsoleOut += (t) => ScriptConsoleOut += t;
         }
 
         protected void Reset()

@@ -24,13 +24,13 @@ namespace ConsoleLangInterpreter
             try
             {
                 ScriptBase langBase = new ScriptBase();
-                langBase.ConsoleOut += (text) =>
+                langBase.Logger.OnConsoleOut += (text) =>
                 {
                     Console.ForegroundColor = ConsoleColor.DarkGreen;
                     Console.Write(text);
                     Console.ResetColor();
                 };
-                langBase.ErrorOut += (token, text) =>
+                langBase.Logger.OnLogTokenizedError += (token, text) =>
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("\r\n" + text);
