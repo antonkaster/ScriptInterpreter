@@ -14,7 +14,7 @@ namespace InterpreterLib.Environment
         /// <summary>
         /// Логгер для вывода информации
         /// </summary>
-        public IScriptLogger Logger { get; }
+        public IScriptLoggerWriter Logger { get; }
 
         /// <summary>
         /// Посылает сигнал остановки сценария

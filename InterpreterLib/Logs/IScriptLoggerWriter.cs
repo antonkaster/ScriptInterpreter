@@ -7,7 +7,7 @@ namespace InterpreterLib.Logs
     /// <summary>
     /// Интерфейс предоставляющий возможность вывода сообщений из сценария
     /// </summary>
-    public interface IScriptLogger
+    public interface IScriptLoggerWriter
     {
         /// <summary>
         /// Отправить сообщение сценария

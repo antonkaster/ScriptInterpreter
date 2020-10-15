@@ -7,7 +7,8 @@ namespace InterpreterLib.Logs
     /// <summary>
     /// Интерфес глобального логгера
     /// </summary>
-    internal interface ILogger : IInterpreterLogger, IScriptLogger
+    internal interface ILogger
     {
+
     }
 }

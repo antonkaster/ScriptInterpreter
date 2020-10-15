@@ -20,9 +20,9 @@ namespace InterpreterLib.ParserModules
     {
         private readonly FunctionsRepository functions;
         private readonly ScriptEnvironment scriptEnvironment;
-        private readonly IInterpreterLogger logger;
+        private readonly IInterpreterLoggerWriter logger;
 
-        internal ParserFactory(IInterpreterLogger logger , FunctionsRepository functions, ScriptEnvironment scriptEnvironment)
+        internal ParserFactory(IInterpreterLoggerWriter logger , FunctionsRepository functions, ScriptEnvironment scriptEnvironment)
         {
             this.functions = functions ?? throw new ArgumentNullException("Functions repository can't be null!");
             this.scriptEnvironment = scriptEnvironment ?? throw new ArgumentNullException("Script environment can't be null!");
@@ -50,11 +50,11 @@ namespace InterpreterLib.ParserModules
 
                 stopwatch.Stop();
 
-                logger.LogDebug($"Tokenized in {stopwatch.Elapsed}");
+                logger.Debug($"Tokenized in {stopwatch.Elapsed}");
             }
             catch (Exception ex)
             {
-                logger.LogError($"Tokenize error: " + ex.Message);
+                logger.Error($"Tokenize error: " + ex.Message);
                 throw new TokenizeException($"Tokenize error: " + ex.Message, ex);
             }
 
@@ -69,12 +69,12 @@ namespace InterpreterLib.ParserModules
 
                 stopwatch.Stop();
 
-                logger.LogDebug($"Parsed in {stopwatch.Elapsed}");
+                logger.Debug($"Parsed in {stopwatch.Elapsed}");
                 return new Interpreter(scriptEnvironment, runtimeControl, rootExpression, tokens);
             }
             catch (Exception ex)
             {
-                logger.LogError($"Parse error: " + ex.Message);
+                logger.Error($"Parse error: " + ex.Message);
                 throw new ParseException($"Parse error: " + ex.Message, ex);
             }
 

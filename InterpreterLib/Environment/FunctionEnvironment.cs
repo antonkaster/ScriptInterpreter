@@ -12,14 +12,14 @@ namespace InterpreterLib.Environment
     /// </summary>
     internal class FunctionEnvironment : IFunctionEnvironment
     {
-        public IScriptLogger Logger { get; }
+        public IScriptLoggerWriter Logger { get; }
 
         private readonly ScriptEnvironment environment;
 
         public FunctionEnvironment(ScriptEnvironment environment)
         {
             this.environment = environment ?? throw new ArgumentNullException("EnvironmentBox can't be null!");
-            Logger = environment.Logger;
+            Logger = environment.ScriptLoger;
         }
 
         public void StopScript()

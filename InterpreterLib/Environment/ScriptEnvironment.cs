@@ -23,14 +23,16 @@ namespace InterpreterLib.Environment
         /// <summary>
         /// Интерфейс логгера сценария
         /// </summary>
-        public ILogger Logger { get; private set; }
+        public IInterpreterLoggerWriter Logger { get => logger; }
+        public IScriptLoggerWriter ScriptLoger { get => logger; }
 
         private readonly VariablesHeap vars;
+        private readonly ScriptLogger logger;
 
-        public ScriptEnvironment(ILogger logger)
+        public ScriptEnvironment(ScriptLogger logger)
         {
-            vars = new VariablesHeap();
-            this.Logger = logger ?? throw new ArgumentNullException("Logger can't be null!");
+            this.vars = new VariablesHeap();
+            this.logger = logger ?? throw new ArgumentNullException("Logger can't be null!");
         }
 
         /// <summary>

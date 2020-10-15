@@ -22,11 +22,11 @@ namespace InterpreterLib.Environment
 
         public CancellationToken CancellationToken { get => cts.Token; }
 
-        private readonly IInterpreterLogger logger;
+        private readonly IInterpreterLoggerWriter logger;
         private CancellationTokenSource cts = new CancellationTokenSource();
         private bool enableStepFlag = false;
 
-        public ScriptRuntimeControl(IInterpreterLogger logger)
+        public ScriptRuntimeControl(IInterpreterLoggerWriter logger)
         {
             this.logger = logger ?? throw new ArgumentNullException("Logger can't be null!");
         }
@@ -81,7 +81,7 @@ namespace InterpreterLib.Environment
                 throw new ScriptStopException(ScriptStopReason.ExternalCancellation);
 
             if (token.TokenType != TokenType.Empty)
-                logger.LogDebug($"{token} excecute");
+                logger.Debug($"{token} excecute");
 
         }
 
